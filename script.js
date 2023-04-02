@@ -22,7 +22,7 @@ function makeGrid(){
         grid.appendChild(row);
          }
          grid.style.gridTemplateColumns = `repeat(${box}, 1fr)`
-         grid.style.gridTemplaterows =`repeat(${box},1fr)`
+         grid.style.gridTemplateRows =`repeat(${box},1fr)`
 }       
         else {makeGrid()}
 }
@@ -73,11 +73,12 @@ function resetClear() {
             grid.appendChild(row);
              }
              grid.style.gridTemplateColumns = `repeat(${box}, 1fr)`
-             grid.style.gridTemplaterows =`repeat(${box},1fr)`
+             grid.style.gridTemplateRows =`repeat(${box},1fr)`
     }       
             else {makeClear()}
   }
 makeGrid()
+//bind clear to c button
 document.addEventListener('keydown',(event) => {
      if(event.key === 'c') {
         resetClear()
