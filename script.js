@@ -1,23 +1,34 @@
+//makes grid
 function makeGrid(){
 
-    for (let i =1; i < 17; i++){
+    for (let i =1; i < 257; i++){
     const grid = document.querySelector('.grid');
 
         const row = document.createElement('div');
-        row.classList.add("row",`${i}`);
-        row.style.cssText = "display: flex; flex-direction: row; width: auto; height: auto;"
+        row.classList.add("pixel");
+        row.addEventListener("mouseover", makePixel)
+        row.style.cssText = "width: 50px; height: 50px; border: 1px solid black;"
 
         grid.appendChild(row);
-            for (let c = 1; c < 17; c++){
-            const rows = document.querySelector(`div[class="row ${i}"]`);
-        
-                const colum = document.createElement('div');
-                colum.classList.add("colum",`${c}`);
-                colum.style.cssText = " height: 50px; width: 50px; outline: black solid thin;"
-        
-                rows.appendChild(colum);
-                
-            }
+            
     }
 }
 makeGrid()
+
+
+//changes pixel color
+function makePixel(e){
+    e.target.style.backgroundColor = 'black' ;
+}
+//resets grid with click
+const grid = document.querySelector('.grid');
+
+window.addEventListener('click', resetGrid);
+
+function resetGrid() {
+  while (grid.firstChild) { 
+    grid.removeChild(grid.firstChild);  
+  }
+  
+  makeGrid(); 
+}
