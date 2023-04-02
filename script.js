@@ -1,12 +1,15 @@
 //get grid size
 let box = 0
-let colorOption = ""
+let colorOption = "black"
 
 const grid = document.querySelector('.grid');
 
 //makes grid
 function makeGrid(){
-    let box = prompt("Please enter grid size from 1 to 64:")
+    function boxSize(){
+    return box = prompt("Please enter grid size from 1 to 64:")
+    }
+    boxSize()
     if (box > 0 && box <= 64){
     let gridSize = (box*box);
 
@@ -23,15 +26,16 @@ function makeGrid(){
 }       
         else {makeGrid()}
 }
-function random_rgba() {
-    var o = Math.round, r = Math.random, s = 255;
-    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
-}
-
 
 //changes pixel color
 function makePixel(e){
-    e.target.style.backgroundColor = colorOption ;
+    if (colorOption == "black"){
+    e.target.style.backgroundColor = "black" ;
+    }
+    else{
+        var o = Math.round, r = Math.random, s = 255;
+        return e.target.style.backgroundColor = 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    }
 }
 //resets grid and changes color with click
 
@@ -42,15 +46,41 @@ function makeBlack(){
 
 
 function makeColor(){
-     return colorOption = random_rgba();
+     return colorOption = "color";
      
 }
 
 
-function resetGrid() {
+function resetSize() {
   while (grid.firstChild) { 
     grid.removeChild(grid.firstChild);  
   }
   makeGrid(); 
 }
+function resetClear() {
+    while (grid.firstChild) { 
+        grid.removeChild(grid.firstChild);  
+      }
+    if (box > 0 && box <= 64){
+        let gridSize = (box*box);
+    
+        for (let i =0; i < gridSize; i++){
+    
+            const row = document.createElement('div');
+            row.classList.add("pixel");
+            row.addEventListener("mouseover", makePixel)
+            
+            grid.appendChild(row);
+             }
+             grid.style.gridTemplateColumns = `repeat(${box}, 1fr)`
+             grid.style.gridTemplaterows =`repeat(${box},1fr)`
+    }       
+            else {makeClear()}
+  }
 makeGrid()
+document.addEventListener('keydown',(event) => {
+     if(event.key === 'c') {
+        resetClear()
+    }
+
+})
