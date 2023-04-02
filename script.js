@@ -1,34 +1,56 @@
+//get grid size
+let box = 0
+let colorOption = ""
+
+const grid = document.querySelector('.grid');
+
 //makes grid
 function makeGrid(){
+    let box = prompt("Please enter grid size from 1 to 64:")
+    if (box > 0 && box <= 64){
+    let gridSize = (box*box);
 
-    for (let i =1; i < 257; i++){
-    const grid = document.querySelector('.grid');
+    for (let i =0; i < gridSize; i++){
 
         const row = document.createElement('div');
         row.classList.add("pixel");
         row.addEventListener("mouseover", makePixel)
-        row.style.cssText = "width: 50px; height: 50px; border: 1px solid black;"
-
+        
         grid.appendChild(row);
-            
-    }
+         }
+         grid.style.gridTemplateColumns = `repeat(${box}, 1fr)`
+         grid.style.gridTemplaterows =`repeat(${box},1fr)`
+}       
+        else {makeGrid()}
 }
-makeGrid()
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
 
 
 //changes pixel color
 function makePixel(e){
-    e.target.style.backgroundColor = 'black' ;
+    e.target.style.backgroundColor = colorOption ;
 }
-//resets grid with click
-const grid = document.querySelector('.grid');
+//resets grid and changes color with click
 
-window.addEventListener('click', resetGrid);
+
+function makeBlack(){
+    return colorOption = "black"
+}
+
+
+function makeColor(){
+     return colorOption = random_rgba();
+     
+}
+
 
 function resetGrid() {
   while (grid.firstChild) { 
     grid.removeChild(grid.firstChild);  
   }
-  
   makeGrid(); 
 }
+makeGrid()

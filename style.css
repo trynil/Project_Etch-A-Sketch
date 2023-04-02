@@ -1,16 +1,38 @@
 body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 div {
     display: flex;
 }
 .grid{
-    width: 832px;
-    height: 832px;
-    border: 1px solid #c3c3c3;
-    display: flex;
-    flex-wrap: wrap;
+    width: 960px;
+    height: 960px;
+    display: grid;
+    align-items: center;
     justify-content: center;
 
+}
+.pixel{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    
+    border: 1px solid black;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 660px;
+    padding: 10px;
+}
+button{
+    font-size: 50px;
+}
+#title{
+    font-size: 100px;
+    padding: 10px;
 }
